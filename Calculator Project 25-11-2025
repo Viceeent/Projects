@@ -33,7 +33,7 @@ def multiply(num1,num2):
 def power(num1,num2):
     num1 = float(input('Whats your first number?'))
     num2 = int(input('Whats the power? '))
-    result = num1 ^ num2
+    result = num1 ** num2
     history.append(result)
     return result
 def modulus(num1,num2):
@@ -49,7 +49,7 @@ def floordivision(num1,num2):
         print('You cant divide by 0')
     else:
         result = num1 // num2
-        historylist.append(result)
+        history.append(result)
         return result
 def showhistory(history):
     for item in history:
