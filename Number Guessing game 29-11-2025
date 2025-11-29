@@ -1,0 +1,52 @@
+import random
+
+def difficulty_function():
+    difficulty_list = ['1. Hard', '2. Medium', '3. Easy']
+    for item in difficulty_list:
+        print(item)
+
+    difficulty_option = int(input('Please input the number next to the wished mode: '))
+
+    if difficulty_option == 1:
+        return 3
+    elif difficulty_option == 2:
+        return 5
+    elif difficulty_option == 3:
+        return 10
+    else:
+        print("Invalid option. Defaulting to Easy.")
+        return 10
+
+
+quit = 'n'
+wins = 0
+losses = 0
+
+print('Welcome to the Number Guessing Game!')
+
+while quit == 'n':
+    secret = random.randint(1, 20)
+    attempts = difficulty_function()  # get attempts properly
+
+    while attempts > 0:
+        guess = int(input('Say a number between 1 and 20: '))
+
+        if guess < secret:
+            attempts -= 1
+            print(f'Too low! You have {attempts} attempts left.')
+        elif guess > secret:
+            attempts -= 1
+            print(f'Too high! You have {attempts} attempts left.')
+        else:
+            print('Congratulations! You guessed the number!')
+            wins += 1
+            break
+
+    if attempts == 0:
+        print(f'Sorry, you have no attempts left. The secret number was {secret}.')
+        losses += 1
+
+    quit = input('Do you want to quit? (y/n): ')
+    if quit == 'n':
+        print('Good luck on the next round!')
+print(f'Final Score - Wins: {wins}, Losses: {losses}')
