@@ -1,0 +1,39 @@
+import requests
+import time
+def get_coin():
+
+    try: 
+        coin = input('Whats the coin you want to check: ').lower()
+        currency = input('Whats the currency: ').lower()
+        params = {
+            "ids": coin,
+            "vs_currencies": currency
+        }
+
+        coins = requests.get(
+            "https://api.coingecko.com/api/v3/simple/price",
+           params=params
+        )
+
+        if coins.status_code != 200:
+            return f'There was an unexpected error with the api, please try again. error {coins.status_code}'
+        json_response = coins.json()
+        current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+        response = f'The price for {coin} is {json_response[coin][currency]} {currency} as of {current_time}\n'
+        with open('coins.txt', 'a') as file:
+            file.write(response)
+        return f'{response}\nThe price has been uploaded on the file "coins.txt"'
+    except KeyError:
+        return 'API returned empty data, either theres an issue with the API or you spelled the coin or currency incorrectly'
+
+while True:
+    print('Welcome to coin cheker bot!')
+    op = int(input('1. Check the price of a new coin\n2. Check history\nInput the number next to the wished operation: '))
+    if op == 1:
+        print(get_coin())
+    elif op == 2:
+        with open('coins.txt', 'r') as file:
+            contents = file.read()
+            print(contents)
+
+    quit = input('Wanna quit (y/n): ')
