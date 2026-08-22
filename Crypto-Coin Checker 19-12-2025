@@ -1,5 +1,6 @@
 import requests
 import time
+quit = 'n'
 def get_coin():
 
     try: 
@@ -26,7 +27,7 @@ def get_coin():
     except KeyError:
         return 'API returned empty data, either theres an issue with the API or you spelled the coin or currency incorrectly'
 
-while True:
+while quit == 'n':
     print('Welcome to coin cheker bot!')
     op = int(input('1. Check the price of a new coin\n2. Check history\nInput the number next to the wished operation: '))
     if op == 1:
