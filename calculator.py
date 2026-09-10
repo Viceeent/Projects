@@ -75,7 +75,6 @@ if __name__ == "__main__":
             num2 = float(input("second number: "))
             result = operations[operation](num1, num2)
             if result is not None:
-                #calc.history.append(result)
                 print(result)
             else:
                 print("There was an issue, nothing has been appended.")
