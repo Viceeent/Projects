@@ -7,23 +7,43 @@ class Calculator:
         self.history = []
 
     def add(self, num1, num2):
-        return num1 + num2
+        result = num1 + num2
+        self.history.append(result)
+        return result
+
+    def subtract(self, num1, num2):
+        result = num1 - num2
+        self.history.append(result)
+        return result
+
     def divide(self, num1, num2):
         if num2 != 0:
-            return num1 / num2
+            result = num1 / num2
+            self.history.append(result)
+            return result
         else:
             return None
-    def subtract(self, num1, num2):
-        return num1 - num2
+
     def multiply(self, num1, num2):
-        return num1 * num2
+        result = num1 * num2
+        self.history.append(result)
+        return result
+
     def power(self, num1, num2):
-        return num1 ** num2
+        result = num1 ** num2
+        self.history.append(result)
+        return result
+
     def modulus(self, num1, num2):
-        return num1 % num2
+        result = num1 % num2
+        self.history.append(result)
+        return result
+
     def floordivision(self, num1, num2):
         if num2 != 0:
-            return num1 // num2
+            result = num1 // num2
+            self.history.append(result)
+            return result
         else:
             return None
     def show_history(self):
@@ -55,7 +75,7 @@ if __name__ == "__main__":
             num2 = float(input("second number: "))
             result = operations[operation](num1, num2)
             if result is not None:
-                calc.history.append(result)
+                #calc.history.append(result)
                 print(result)
             else:
                 print("There was an issue, nothing has been appended.")
